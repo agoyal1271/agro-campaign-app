@@ -302,7 +302,15 @@ async function runCampaign() {
   console.log('🎉 Campaign completed');
 }
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  client.initialize();
+  // Initialize WhatsApp client asynchronously (non-blocking)
+  client.initialize().catch(err => {
+    console.error('Error initializing WhatsApp:', err.message);
+  });
 });
