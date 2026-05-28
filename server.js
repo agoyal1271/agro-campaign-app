@@ -257,20 +257,6 @@ app.post('/api/send', async (req, res) => {
     return res.status(400).json({ error: 'No buyers in campaign' });
   }
 
-  // SAFETY CHECK 1: Time window
-  const timeCheck = safetyCheck.checkTimeWindow();
-  if (!timeCheck.allowed) {
-    safetyCheck.logSafetyCheck('Time Window', timeCheck);
-    return res.status(400).json({ error: timeCheck.message });
-  }
-
-  // SAFETY CHECK 2: Day of week
-  const dayCheck = safetyCheck.checkDayOfWeek();
-  if (!dayCheck.allowed) {
-    safetyCheck.logSafetyCheck('Day of Week', dayCheck);
-    return res.status(400).json({ error: dayCheck.message });
-  }
-
   const campaign = campaignMgr.getCampaignById(campaignState.currentCampaignId);
   campaignMgr.updateCampaignStatus(campaignState.currentCampaignId, 'running');
 
