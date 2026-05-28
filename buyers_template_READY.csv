@@ -1,0 +1,48 @@
+name,phone,country,product,price_usd,moq,region_hook
+Mr.Muhammad Ichwan Saputra,6281901219000,Indonesia,Peanut Bold 38/42,1216,25 KG,Indonesia Premium Quality
+Mr. Rudy,62817300092,Indonesia,Peanut Bold 38/42,1216,26 KG,Jakarta Distribution
+Pt. Total Harvest Cemerlang,62819889898,Indonesia,Peanut Bold 38/42,1216,27 KG,Surabaya Traders
+Pt Nusantara Agro Mandiri,6281807773456,Indonesia,Peanut Bold 38/42,1216,28 KG,Medan Exporters
+Pt. Asian Agro Commodities,6281375003538,Indonesia,Peanut Bold 38/42,1216,29 KG,Bandung Market
+Poppy Dharsono,6281703357357,Indonesia,Peanut Bold 38/42,1216,30 KG,Central Java
+Kota Mas,6281233633358,Indonesia,Peanut Bold 38/42,1216,31 KG,East Java Bulk
+Mrs. Ratna So,628121768109,Indonesia,Peanut Bold 38/42,1216,32 KG,Jakarta Wholesale
+Ms. Linda Novitasari,6281233006567,Indonesia,Peanut Bold 38/42,1216,33 KG,Bekasi Importers
+P.T. Universal Exports,6287821698768,Indonesia,Peanut Bold 38/42,1216,34 KG,Indonesian Trading Hub
+Sathiesh (Bvg),94777327758,Sri Lanka,Chickpea 42-44,1064,35 KG,Colombo Direct
+Kandy Trade,94777344767,Sri Lanka,Chickpea 42-44,1064,36 KG,Kandy Merchants
+Pv Imports And Exports Pvt Ltd,94770063169,Sri Lanka,Chickpea 42-44,1064,37 KG,Sri Lanka Premium
+Nalin Karunaratne,94774286810,Sri Lanka,Chickpea 42-44,1064,38 KG,Galle Port
+A Mohammed,94777599633,Sri Lanka,Chickpea 42-44,1064,39 KG,Ceylon Trading
+Hasitha Dissanayake,94774049154,Sri Lanka,Chickpea 42-44,1064,40 KG,Colombo Bulk
+Janaka K.H. Withana,94757138138,Sri Lanka,Chickpea 42-44,1064,41 KG,Sri Lanka Exporters
+H.M. Nilantha C. Herath,94777317916,Sri Lanka,Chickpea 42-44,1064,42 KG,Island Traders
+Shafraz Niyas,94764428208,Sri Lanka,Chickpea 42-44,1064,43 KG,South Sri Lanka
+Ravindu Kothalawala,94773047618,Sri Lanka,Chickpea 42-44,1064,44 KG,Central Region
+Upharika Mishra,6583801992,Singapore,Mung Bean 210-220,984,45 KG,Singapore Hub
+Mr. Gaurav Bhavsar,6581898604,Singapore,Mung Bean 210-220,984,46 KG,Singapore Trade
+Mr. Kamal Gumnani,6590022733,Singapore,Mung Bean 210-220,984,47 KG,Port of Singapore
+Dawood Flour Mill,6590173480,Singapore,Mung Bean 210-220,984,48 KG,Singapore Food Trade
+Alpha Bizcom Pte Ltd,6582025602,Singapore,Mung Bean 210-220,984,49 KG,Singapore Bulk Buyers
+Grand Groceria Pte Ltd,6590030947,Singapore,Mung Bean 210-220,984,50 KG,Singapore Retailers
+Ria Delights,6581180140,Singapore,Mung Bean 210-220,984,51 KG,Singapore Distributors
+Ms. Lee,6591120708,Singapore,Mung Bean 210-220,984,52 KG,Singapore Importers
+Vatsal Bhai,6593846721,Singapore,Mung Bean 210-220,984,53 KG,Singapore Direct
+Ritesh Ji,6582184301,Singapore,Mung Bean 210-220,984,54 KG,Singapore Trade Post
+Mr. Wayne,60174773299,Malaysia,Mung Bean 210-220,984,55 KG,Kuala Lumpur Hub
+S. Siva,60194450689,Malaysia,Mung Bean 210-220,984,56 KG,Malaysia Trading
+Md Abu Nidal Tushar,60122003105,Malaysia,Mung Bean 210-220,984,57 KG,Malaysian Importers
+Ms. Christine Lim,60194168686,Malaysia,Mung Bean 210-220,984,58 KG,KL Distributors
+Ms Premalatha,60163339185,Malaysia,Mung Bean 210-220,984,59 KG,Malaysia Direct
+Thaaimadi Natural Foods,60125129298,Malaysia,Mung Bean 210-220,984,60 KG,Malaysian Wholesalers
+Ms. Alice,60124825161,Malaysia,Mung Bean 210-220,984,61 KG,Malaysia Bulk
+Mr. kenny Lee,60124846808,Malaysia,Mung Bean 210-220,984,62 KG,Malaysian Traders
+Mss Seng,60124883583,Malaysia,Mung Bean 210-220,984,63 KG,Malaysia Food Trade
+Mr. Jenson Ng,60124110073,Malaysia,Mung Bean 210-220,984,64 KG,Malaysian Hub
+
+template_id,content
+1,"Hi {{name}}, premium {{product}} now available! FOB ${{price_usd}}. {{moq}} minimum order. Perfect for {{region_hook}}. Shipment June 2026. Interested?"
+2,"{{name}}, quality {{product}} at ${{price_usd}} FOB. {{moq}} bags available. Best rates for {{region_hook}} market. June 2026 shipment ex-India. Reply YES!"
+3,"Exclusive {{product}} offer {{name}}! Premium grade at ${{price_usd}}, MOQ {{moq}}. FOB pricing. {{region_hook}} - contact us today for quotation!"
+4,"{{name}}, {{product}} in stock! ${{price_usd}} per {{moq}}. Ready for {{region_hook}}. June 2026 shipment from India. Bulk orders welcome?"
+5,"{{product}} supplier here {{name}}! Best FOB prices ${{price_usd}}. {{moq}} packaging. Ready June 2026 shipment. {{region_hook}} buyers - reply for quotation!"

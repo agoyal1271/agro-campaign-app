@@ -125,7 +125,10 @@ app.get('/api/status', (req, res) => {
   res.json({
     whatsappConnected: campaignState.whatsappConnected,
     qrCode: campaignState.qrCode,
-    stats: campaignState.stats,
+    stats: {
+      ...campaignState.stats,
+      total: campaignState.buyers.length
+    },
     campaign: campaignState.currentCampaign
   });
 });

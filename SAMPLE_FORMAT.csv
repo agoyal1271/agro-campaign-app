@@ -1,0 +1,13 @@
+name,phone,country,product,price_usd,moq,region_hook
+Rajesh Kumar,919876543210,India,Organic Fertilizer,15,50 bags,Gujarat
+Priya Singh,919876543211,India,Organic Seeds,8,100 kg,Maharashtra
+Amit Patel,919876543212,India,Pesticide Solution,25,25 liters,Punjab
+Deepak Sharma,919876543213,India,Soil Nutrients,12,75 bags,Haryana
+Neha Verma,919876543214,India,Water Treatment,30,10 units,Rajasthan
+
+template_id,content
+1,Hi {{name}}, we have premium {{product}} at {{price_usd}} USD. Perfect for {{region_hook}}. MOQ: {{moq}}. Interested? 🌾
+2,Hello {{name}}, boost {{product}} yields. Special price: {{price_usd}} USD. Order {{moq}} today for {{region_hook}} region!
+3,{{name}}, our {{product}} trusted in {{country}}. {{price_usd}} USD, minimum {{moq}}. Ideal for {{region_hook}}. Reply YES!
+4,Exclusive offer {{name}}! {{product}} at {{price_usd}} USD. Limited slots for {{region_hook}}. Minimum {{moq}} to start. 💚
+5,{{name}}, improve farming in {{region_hook}}. {{product}} at {{price_usd}} USD (MOQ: {{moq}}). Respond with your interest!

@@ -1,0 +1,48 @@
+name,phone,country,product,price_usd,moq,region_hook
+Mr.Muhammad Ichwan Saputra,6281901219000,Indonesia,Peanut Bold 38/42,1216,25 KG Bag,Indonesia
+Mr. Rudy,62817300092,Indonesia,Peanut Bold 38/42,1216,26 KG Bag,Indonesia
+Pt. Total Harvest Cemerlang,62819889898,Indonesia,Peanut Bold 38/42,1216,27 KG Bag,Indonesia
+Pt Nusantara Agro Mandiri,6281807773456,Indonesia,Peanut Bold 38/42,1216,28 KG Bag,Indonesia
+Pt. Asian Agro Commodities,6281375003538,Indonesia,Peanut Bold 38/42,1216,29 KG Bag,Indonesia
+Poppy Dharsono,6281703357357,Indonesia,Peanut Bold 38/42,1216,30 KG Bag,Indonesia
+Kota Mas,6281233633358,Indonesia,Peanut Bold 38/42,1216,31 KG Bag,Indonesia
+Mrs. Ratna So,628121768109,Indonesia,Peanut Bold 38/42,1216,32 KG Bag,Indonesia
+Ms. Linda Novitasari,6281233006567,Indonesia,Peanut Bold 38/42,1216,33 KG Bag,Indonesia
+P.T. Universal Exports,6287821698768,Indonesia,Peanut Bold 38/42,1216,34 KG Bag,Indonesia
+Sathiesh (Bvg),94777327758,Sri Lanka,Chickpea 42-44,1064,35 KG Bag,Sri Lanka
+Kandy Trade,94777344767,Sri Lanka,Chickpea 42-44,1064,36 KG Bag,Sri Lanka
+Pv Imports And Exports Pvt Ltd,94770063169,Sri Lanka,Chickpea 42-44,1064,37 KG Bag,Sri Lanka
+Nalin Karunaratne,94774286810,Sri Lanka,Chickpea 42-44,1064,38 KG Bag,Sri Lanka
+A Mohammed,94777599633,Sri Lanka,Chickpea 42-44,1064,39 KG Bag,Sri Lanka
+Hasitha Dissanayake,94774049154,Sri Lanka,Chickpea 42-44,1064,40 KG Bag,Sri Lanka
+Janaka K.H. Withana,94757138138,Sri Lanka,Chickpea 42-44,1064,41 KG Bag,Sri Lanka
+H.M. Nilantha C. Herath,94777317916,Sri Lanka,Chickpea 42-44,1064,42 KG Bag,Sri Lanka
+Shafraz Niyas,94764428208,Sri Lanka,Chickpea 42-44,1064,43 KG Bag,Sri Lanka
+Ravindu Kothalawala,94773047618,Sri Lanka,Chickpea 42-44,1064,44 KG Bag,Sri Lanka
+Upharika Mishra,6583801992,Singapore,Mung Bean 210-220,984,45 KG Bag,Singapore
+Mr. Gaurav Bhavsar,6581898604,Singapore,Mung Bean 210-220,984,46 KG Bag,Singapore
+Mr. Kamal Gumnani,6590022733,Singapore,Mung Bean 210-220,984,47 KG Bag,Singapore
+Dawood Flour Mill,6590173480,Singapore,Mung Bean 210-220,984,48 KG Bag,Singapore
+Alpha Bizcom Pte Ltd,6582025602,Singapore,Mung Bean 210-220,984,49 KG Bag,Singapore
+Grand Groceria Pte Ltd,6590030947,Singapore,Mung Bean 210-220,984,50 KG Bag,Singapore
+Ria Delights,6581180140,Singapore,Mung Bean 210-220,984,51 KG Bag,Singapore
+Ms. Lee,6591120708,Singapore,Mung Bean 210-220,984,52 KG Bag,Singapore
+Vatsal Bhai,6593846721,Singapore,Mung Bean 210-220,984,53 KG Bag,Singapore
+Ritesh Ji,6582184301,Singapore,Mung Bean 210-220,984,54 KG Bag,Singapore
+Mr. Wayne,60174773299,Malaysia,Mung Bean 210-220,984,55 KG Bag,Malaysia
+S. Siva,60194450689,Malaysia,Mung Bean 210-220,984,56 KG Bag,Malaysia
+Md Abu Nidal Tushar,60122003105,Malaysia,Mung Bean 210-220,984,57 KG Bag,Malaysia
+Ms. Christine Lim,60194168686,Malaysia,Mung Bean 210-220,984,58 KG Bag,Malaysia
+Ms Premalatha,60163339185,Malaysia,Mung Bean 210-220,984,59 KG Bag,Malaysia
+Thaaimadi Natural Foods,60125129298,Malaysia,Mung Bean 210-220,984,60 KG Bag,Malaysia
+Ms. Alice,60124825161,Malaysia,Mung Bean 210-220,984,61 KG Bag,Malaysia
+Mr. kenny Lee,60124846808,Malaysia,Mung Bean 210-220,984,62 KG Bag,Malaysia
+Mss Seng,60124883583,Malaysia,Mung Bean 210-220,984,63 KG Bag,Malaysia
+Mr. Jenson Ng,60124110073,Malaysia,Mung Bean 210-220,984,64 KG Bag,Malaysia
+
+template_id,content
+1,"Hi {{name}}, premium {{product}} available! ${{price_usd}} per {{moq}}. FOB Indian port. Shipment June 2026. Perfect for {{region_hook}} market. Interested?"
+2,"{{name}}, quality {{product}} at ${{price_usd}}. Best rates for {{region_hook}} buyers. {{moq}} bags, June 2026 shipment ex-India. Reply YES for details!"
+3,"Exclusive {{product}} offer for {{name}}! Premium grade at ${{price_usd}}, MOQ {{moq}}. FOB prices, June shipment. {{region_hook}} region - contact us today!"
+4,"{{name}}, we have {{product}} in stock! ${{price_usd}} per {{moq}}. Shipped June 2026 from India. {{region_hook}} buyers - interested in bulk orders?"
+5,"{{product}} supplier {{name}}! Best FOB prices at ${{price_usd}}. {{moq}} packaging, ready June 2026 shipment. {{region_hook}} buyers - reply for quotation!"

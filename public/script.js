@@ -283,7 +283,7 @@ async function loadCampaigns() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  setInterval(checkStatus, 5000);
+  setInterval(checkStatus, 1000);
   checkStatus();
   loadCampaigns();
   setInterval(loadCampaigns, 10000);
