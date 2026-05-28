@@ -11,7 +11,9 @@ const API_BASE = 'http://localhost:3000/api';
 
 async function checkStatus() {
   try {
-    const response = await fetch(`${API_BASE}/status`);
+    const response = await fetch(`${API_BASE}/status?t=${Date.now()}`, {
+      cache: 'no-cache'
+    });
     const data = await response.json();
 
     campaignState.whatsappConnected = data.whatsappConnected;
@@ -245,7 +247,10 @@ function showCampaignStatus(message, isError = false) {
 
 async function loadCampaigns() {
   try {
-    const response = await fetch(`${API_BASE}/campaigns`);
+    const response = await fetch(`${API_BASE}/campaigns?t=${Date.now()}`, {
+      cache: 'no-cache',
+      headers: { 'pragma': 'no-cache' }
+    });
     const data = await response.json();
 
     const campaignsList = document.getElementById('campaignsList');
