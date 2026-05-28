@@ -324,26 +324,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', whatsappConnected: campaignState.whatsappConnected });
 });
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log('Initializing WhatsApp client...');
-
-  // Initialize WhatsApp client asynchronously with timeout
-  const initTimeout = setTimeout(() => {
-    console.log('⏱️ WhatsApp initialization timeout - app still responsive');
-  }, 30000);
-
-  client.initialize()
-    .then(() => {
-      clearTimeout(initTimeout);
-      console.log('✅ WhatsApp initialized successfully');
-    })
-    .catch(err => {
-      clearTimeout(initTimeout);
-      console.error('❌ Error initializing WhatsApp:', err.message);
-      console.log('App will continue running - you can still use the UI');
-    });
+  console.log('✅ App ready - UI is accessible');
+  console.log('WhatsApp will initialize when user clicks "Authorize"');
 });
-
-// Prevent server from hanging
-server.keepAliveTimeout = 65000;
