@@ -38,47 +38,55 @@ let campaignState = {
 
 const QRCode = require('qrcode');
 
-const client = new Client({
-  authStrategy: new LocalAuth({ clientId: 'agro-campaign' }),
-  puppeteer: {
-    headless: true,
-    args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
-  }
-});
-
+let client = null;
 let qrGenerationCount = 0;
 
-client.on('qr', async qr => {
-  qrGenerationCount++;
-  console.log(`📱 QR Code generated (attempt ${qrGenerationCount})`);
+// Create WhatsApp client lazily (only when needed)
+function getClient() {
+  if (!client) {
+    console.log('Creating WhatsApp client...');
+    client = new Client({
+      authStrategy: new LocalAuth({ clientId: 'agro-campaign' }),
+      puppeteer: {
+        headless: true,
+        args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+      }
+    });
 
-  if (qrGenerationCount > 3) {
-    console.log('⚠️ Too many QR generation attempts - possible authentication issue');
+    client.on('qr', async qr => {
+      qrGenerationCount++;
+      console.log(`📱 QR Code generated (attempt ${qrGenerationCount})`);
+
+      if (qrGenerationCount > 3) {
+        console.log('⚠️ Too many QR generation attempts - possible authentication issue');
+      }
+
+      try {
+        const qrDataUrl = await QRCode.toDataURL(qr);
+        campaignState.qrCode = qrDataUrl;
+        console.log('✅ QR Code ready for display');
+      } catch (error) {
+        console.log('Error generating QR:', error.message);
+      }
+    });
+
+    client.on('ready', () => {
+      campaignState.whatsappConnected = true;
+      qrGenerationCount = 0;
+      console.log('✅ WhatsApp Connected');
+    });
+
+    client.on('disconnected', () => {
+      campaignState.whatsappConnected = false;
+      console.log('⚠️ WhatsApp Disconnected');
+    });
+
+    client.on('error', (err) => {
+      console.log('❌ WhatsApp Client Error:', err.message);
+    });
   }
-
-  try {
-    const qrDataUrl = await QRCode.toDataURL(qr);
-    campaignState.qrCode = qrDataUrl;
-    console.log('✅ QR Code ready for display');
-  } catch (error) {
-    console.log('Error generating QR:', error.message);
-  }
-});
-
-client.on('ready', () => {
-  campaignState.whatsappConnected = true;
-  qrGenerationCount = 0;
-  console.log('✅ WhatsApp Connected');
-});
-
-client.on('disconnected', () => {
-  campaignState.whatsappConnected = false;
-  console.log('⚠️ WhatsApp Disconnected');
-});
-
-client.on('error', (err) => {
-  console.log('❌ WhatsApp Client Error:', err.message);
-});
+  return client;
+}
 
 client.on('message', async msg => {
   if (msg.fromMe) return;
@@ -108,8 +116,12 @@ app.post('/api/authorize', (req, res) => {
     return res.json({ success: true, message: 'Already connected' });
   }
 
-  if (!client.pupBrowser) {
-    client.initialize();
+  const whatsappClient = getClient();
+
+  if (!whatsappClient.pupBrowser) {
+    whatsappClient.initialize().catch(err => {
+      console.error('Failed to initialize WhatsApp:', err.message);
+    });
   }
 
   setTimeout(() => {
@@ -258,7 +270,8 @@ async function runCampaign() {
         const message = messageService.personalizeMessage(template, buyer);
 
         const number = `${buyer.phone}@c.us`;
-        await client.sendMessage(number, message);
+        const whatsappClient = getClient();
+        await whatsappClient.sendMessage(number, message);
 
         buyer.status = 'sent';
         buyer.sent_at = new Date().toISOString();
