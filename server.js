@@ -84,23 +84,23 @@ function getClient() {
     client.on('error', (err) => {
       console.log('❌ WhatsApp Client Error:', err.message);
     });
+
+    client.on('message', async msg => {
+      if (msg.fromMe) return;
+
+      const number = msg.from.replace('@c.us', '');
+      const buyer = campaignState.buyers.find(b => b.phone === number);
+
+      if (buyer) {
+        console.log(`📩 Reply from ${buyer.name}: ${msg.body}`);
+        campaignState.stats.replies++;
+        buyer.replied = 'yes';
+        buyer.reply_message = msg.body;
+      }
+    });
   }
   return client;
 }
-
-client.on('message', async msg => {
-  if (msg.fromMe) return;
-
-  const number = msg.from.replace('@c.us', '');
-  const buyer = campaignState.buyers.find(b => b.phone === number);
-
-  if (buyer) {
-    console.log(`📩 Reply from ${buyer.name}: ${msg.body}`);
-    campaignState.stats.replies++;
-    buyer.replied = 'yes';
-    buyer.reply_message = msg.body;
-  }
-});
 
 app.get('/api/status', (req, res) => {
   res.json({
