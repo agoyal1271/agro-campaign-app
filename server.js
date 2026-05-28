@@ -268,10 +268,16 @@ app.post('/api/send', async (req, res) => {
 });
 
 async function runCampaign() {
+  console.log('🚀 Campaign execution started');
+  console.log(`📊 Total buyers: ${campaignState.buyers.length}`);
+  console.log(`📝 Total templates: ${campaignState.messageTemplates.length}`);
+
   const batchSize = parseInt(process.env.BATCH_SIZE || 10);
   const minDelay = parseInt(process.env.MESSAGE_DELAY_MIN || 90000);
   const maxDelay = parseInt(process.env.MESSAGE_DELAY_MAX || 180000);
   const campaignId = campaignState.currentCampaignId;
+
+  console.log(`⚙️ Batch size: ${batchSize}, Delay: ${minDelay}-${maxDelay}ms`);
 
   for (let i = 0; i < campaignState.buyers.length; i += batchSize) {
     const batch = campaignState.buyers.slice(i, i + batchSize);
