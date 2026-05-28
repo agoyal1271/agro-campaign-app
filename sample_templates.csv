@@ -1,0 +1,9 @@
+template_id,content
+1,"Hi {{name}}, we have premium {{product}} in stock for {{country}}. Our customers love the quality - MOQ just {{moq}} units at ${{price_usd}}/unit. Ready to ship this week. Can we send you a quote?"
+2,{{country}}'s farming season is here! {{product}} - proven performer in your region. {{region_hook}} Looking for a reliable supplier? Let's talk.
+3,"{{name}}, heard great things about your agricultural operation. We have {{product}} that other {{country}} farmers are raving about. ${{price_usd}}/unit, MOQ {{moq}}. Interested in samples?"
+4,Exclusive offer: {{product}} for {{country}} - {{region_hook}} Limited stock available at ${{price_usd}}/unit (MOQ: {{moq}}). This won't last long. When can we connect?
+5,"{{name}}, {{product}} quality check: High germination rates, Disease resistant, {{country}} tested. ${{price_usd}}/unit, MOQ {{moq}} units. Shall we arrange a trial?"
+6,New arrival alert for {{country}}: {{product}} - Higher yields guaranteed. {{region_hook}} Starting at just ${{price_usd}}/unit (minimum {{moq}} units). Your competitors are buying. Don't fall behind.
+7,"{{name}}, we've been helping {{country}} farmers for years. Latest batch of {{product}}: premium quality, competitive price (${{price_usd}}/unit, MOQ {{moq}}). Want to be our next success story?"
+8,"Quick question for you {{name}}: Are you looking for reliable {{product}} supplier for {{country}}? We have stock ready (MOQ {{moq}}, ${{price_usd}}/unit). Direct from us. Interested?"

@@ -1,0 +1,11 @@
+# BUYERS DATA - Replace phone numbers with your actual buyer phone numbers
+# Format: name, phone (international, no + or spaces), country, product, price_usd, moq, region_hook
+name,phone,country,product,price_usd,moq,region_hook
+Amara Okafor,2348012345678,Nigeria,Hybrid Maize Seeds,45,10,Built for West African soil. Proven across 3 seasons.
+Kwame Mensah,233244567890,Ghana,Sorghum Seeds,38,15,Trusted by Ghana top distributors since 2022.
+Priya Sharma,919876543210,India,Wheat Seeds,32,20,Monsoon-ready stock. Ships before planting window.
+Mohammed Al-Rashid,966512345678,Saudi Arabia,Premium Fertilizer,75,5,High-yield formula for arid conditions.
+Grace Wanjiru,254712345678,Kenya,Maize Seeds,42,10,Trusted by East Africa top distributors.
+Ahmed Hassan,201012345678,Egypt,Cotton Seeds,55,12,Premium variety for Nile delta farming.
+Maria Santos,558512345678,Brazil,Soybean Seeds,48,25,High protein content for South American climate.
+Chen Wei,8613812345678,China,Rice Seeds,28,30,"Disease resistant, high yield variety."

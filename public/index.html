@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganesh Agro - Campaign Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">🌾 Ganesh Agro</div>
+      <h1>WhatsApp Campaign Manager</h1>
+      <p class="subtitle">Send personalized messages to agricultural buyers</p>
+    </div>
+
+    <!-- Status Indicator -->
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="label">WhatsApp Status:</span>
+        <span class="status-badge" id="whatsappStatus">Disconnected</span>
+      </div>
+      <div class="status-item">
+        <span class="label">Campaign Mode:</span>
+        <span class="badge-info">CONSERVATIVE (Safe)</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <!-- Campaign Management -->
+      <section class="step" id="campaigns-section">
+        <div class="step-header">
+          <span class="step-number">📊</span>
+          <h2>Campaign Management</h2>
+        </div>
+        <div class="step-content">
+          <p>Manage your WhatsApp campaigns</p>
+
+          <!-- Current Campaign -->
+          <div class="current-campaign">
+            <h4>Current Campaign:</h4>
+            <div class="campaign-input-group">
+              <input type="text" id="campaignName" placeholder="Enter campaign name (e.g., 'India - May 2026')" class="input-field">
+              <button id="createCampaignBtn" class="btn btn-primary" onclick="createCampaign()">
+                Create Campaign
+              </button>
+            </div>
+            <p id="campaignStatus" class="campaign-status" style="display:none;"></p>
+          </div>
+
+          <!-- Previous Campaigns -->
+          <div class="previous-campaigns">
+            <h4>Previous Campaigns:</h4>
+            <div id="campaignsList" class="campaigns-list">
+              <p class="no-campaigns">No campaigns yet</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 1: Authorization -->
+      <section class="step" id="step1">
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <h2>WhatsApp Authorization</h2>
+        </div>
+        <div class="step-content">
+          <p>Authorize your WhatsApp account (one-time setup)</p>
+
+          <div class="auth-form">
+            <div class="form-group">
+              <label>WhatsApp Number (with country code):</label>
+              <input type="text" id="whatsappNumber" placeholder="+91-9876543210" class="input-field">
+              <small>Format: +country-number (e.g., +91-9876543210 for India)</small>
+            </div>
+
+            <button id="authorizeBtn" class="btn btn-primary" onclick="authorize()">
+              Authorize WhatsApp
+            </button>
+          </div>
+
+          <!-- QR Code Display -->
+          <div id="qrContainer" class="qr-container" style="display:none;">
+            <p class="qr-text">Scan this QR code with your WhatsApp:</p>
+            <div id="qrCode" class="qr-display"></div>
+            <p class="waiting-text">Waiting for scan... This may take 30 seconds.</p>
+          </div>
+
+          <div id="successMessage" class="success-box" style="display:none;">
+            ✅ WhatsApp Connected Successfully!
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: Upload File -->
+      <section class="step" id="step2">
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h2>Upload Buyer List</h2>
+        </div>
+        <div class="step-content">
+          <p>Upload your Excel file with buyers and message templates</p>
+
+          <div class="upload-section">
+            <div class="upload-box" id="dropZone">
+              <svg class="upload-icon" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+              </svg>
+              <p class="upload-text">Drag and drop your Excel file here</p>
+              <p class="upload-subtext">or</p>
+              <label class="btn btn-secondary">
+                Choose File
+                <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden onchange="handleFileSelect(event)">
+              </label>
+            </div>
+
+            <div id="fileStatus" class="file-status" style="display:none;">
+              <div class="status-item">
+                <span>✅ File uploaded</span>
+                <span id="buyerCount" class="badge-success">0 buyers</span>
+              </div>
+              <div class="status-item">
+                <span>Templates:</span>
+                <span id="templateCount" class="badge-success">0 templates</span>
+              </div>
+            </div>
+
+            <div id="fileError" class="error-box" style="display:none;"></div>
+          </div>
+
+          <!-- File Requirements -->
+          <div class="info-box">
+            <h4>📋 File Requirements:</h4>
+            <p><strong>📁 Supports:</strong> .CSV or .XLSX files</p>
+
+            <p><strong>📊 For XLSX:</strong></p>
+            <ul>
+              <li>Sheet "Buyers": name, phone, country, product, price_usd, moq, region_hook</li>
+              <li>Sheet "MessageTemplates": template_id, content</li>
+            </ul>
+
+            <p><strong>📄 For CSV:</strong></p>
+            <ul>
+              <li>Same columns as XLSX</li>
+              <li>Separate buyers from templates with blank line</li>
+            </ul>
+
+            <ul>
+              <li><strong>Max 1000</strong> buyers per upload</li>
+              <li><strong>Placeholders:</strong> {{name}}, {{product}}, {{country}}, {{price_usd}}, {{moq}}, {{region_hook}}</li>
+            </ul>
+            <a href="#" onclick="downloadTemplate()" class="link">Download sample CSV/XLSX files →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: Campaign Settings -->
+      <section class="step" id="step3">
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h2>Campaign Settings</h2>
+        </div>
+        <div class="step-content">
+          <div class="settings-info">
+            <h4>⚙️ Safety Protocols (CONSERVATIVE):</h4>
+            <ul class="settings-list">
+              <li>Message delay: <strong>90-180 seconds</strong> between sends</li>
+              <li>Batch size: <strong>10 messages</strong> per batch</li>
+              <li>Batch break: <strong>4 hours</strong> between batches</li>
+              <li>Max daily: <strong>150 messages</strong></li>
+              <li>Send hours: <strong>10am-2pm only</strong></li>
+              <li>Send days: <strong>Mon, Wed, Fri only</strong></li>
+              <li>Auto-pause: <strong>Enabled</strong> (stops if issues detected)</li>
+            </ul>
+          </div>
+
+          <button id="startBtn" class="btn btn-success btn-large" onclick="startCampaign()" disabled>
+            🚀 START CAMPAIGN
+          </button>
+          <p class="warning-text">Campaign will run in background. Monitor dashboard for progress.</p>
+        </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section class="step" id="dashboard">
+        <div class="step-header">
+          <span class="step-number">📊</span>
+          <h2>Campaign Dashboard</h2>
+        </div>
+        <div class="step-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Sent</div>
+              <div class="stat-value" id="sentCount">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Replies</div>
+              <div class="stat-value" id="replyCount">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Failed</div>
+              <div class="stat-value" id="failedCount">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Total</div>
+              <div class="stat-value" id="totalCount">0</div>
+            </div>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText">No campaign running</p>
+          </div>
+
+          <button class="btn btn-secondary" onclick="location.reload()">Reset & Start New Campaign</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Ganesh Agro Campaign Manager v1.0 | Running locally on your machine</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

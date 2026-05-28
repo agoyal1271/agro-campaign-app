@@ -1,0 +1,10 @@
+name,phone,country,product,price_usd,moq,region_hook
+Amara Okafor,919425062801,india,Hybrid Seeds,45,10,"Built for West African soil"
+Kwame Mensah,919329373327,india,Sorghum Seeds,38,15,"Trusted by Ghana distributors"
+doro doro,919589234411,india,Sorghum Seeds,38,15,"Trusted by Ghana distributors"
+template_id,content
+1,"Hi {{name}}, we have premium {{product}} in stock for {{country}}. MOQ {{moq}} units at ${{price_usd}}/unit. Interested?"
+2,"{{country}} farming season! {{product}} - {{region_hook}}. Stock ready. Let's discuss?"
+3,"{{name}}, we have {{product}} that {{country}} farmers love. ${{price_usd}}/unit, MOQ {{moq}}. Interested in samples?"
+4,"New {{product}} stock for {{country}}: ${{price_usd}}/unit (MOQ {{moq}}). {{region_hook}} When can we connect?"
+5,"{{name}}, {{product}} quality: high germination, disease resistant, {{country}} tested. ${{price_usd}}/unit. Trial order?"
