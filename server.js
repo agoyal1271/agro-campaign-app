@@ -40,14 +40,26 @@ const QRCode = require('qrcode');
 
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: 'agro-campaign' }),
-  puppeteer: { headless: true, args: ['--no-sandbox'] }
+  puppeteer: {
+    headless: true,
+    args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+  }
 });
 
+let qrGenerationCount = 0;
+
 client.on('qr', async qr => {
+  qrGenerationCount++;
+  console.log(`📱 QR Code generated (attempt ${qrGenerationCount})`);
+
+  if (qrGenerationCount > 3) {
+    console.log('⚠️ Too many QR generation attempts - possible authentication issue');
+  }
+
   try {
     const qrDataUrl = await QRCode.toDataURL(qr);
     campaignState.qrCode = qrDataUrl;
-    console.log('📱 QR Code generated - ready for display');
+    console.log('✅ QR Code ready for display');
   } catch (error) {
     console.log('Error generating QR:', error.message);
   }
@@ -55,12 +67,17 @@ client.on('qr', async qr => {
 
 client.on('ready', () => {
   campaignState.whatsappConnected = true;
+  qrGenerationCount = 0;
   console.log('✅ WhatsApp Connected');
 });
 
 client.on('disconnected', () => {
   campaignState.whatsappConnected = false;
-  console.log('⚠️  WhatsApp Disconnected');
+  console.log('⚠️ WhatsApp Disconnected');
+});
+
+client.on('error', (err) => {
+  console.log('❌ WhatsApp Client Error:', err.message);
 });
 
 client.on('message', async msg => {
@@ -304,13 +321,29 @@ async function runCampaign() {
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+  res.json({ status: 'ok', whatsappConnected: campaignState.whatsappConnected });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  // Initialize WhatsApp client asynchronously (non-blocking)
-  client.initialize().catch(err => {
-    console.error('Error initializing WhatsApp:', err.message);
-  });
+  console.log('Initializing WhatsApp client...');
+
+  // Initialize WhatsApp client asynchronously with timeout
+  const initTimeout = setTimeout(() => {
+    console.log('⏱️ WhatsApp initialization timeout - app still responsive');
+  }, 30000);
+
+  client.initialize()
+    .then(() => {
+      clearTimeout(initTimeout);
+      console.log('✅ WhatsApp initialized successfully');
+    })
+    .catch(err => {
+      clearTimeout(initTimeout);
+      console.error('❌ Error initializing WhatsApp:', err.message);
+      console.log('App will continue running - you can still use the UI');
+    });
 });
+
+// Prevent server from hanging
+server.keepAliveTimeout = 65000;
