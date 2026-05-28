@@ -5,7 +5,17 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { Client, LocalAuth } = require('whatsapp-web.js');
+
+let Client, LocalAuth;
+try {
+  ({ Client, LocalAuth } = require('whatsapp-web.js'));
+  console.log('✅ WhatsApp module loaded');
+} catch (err) {
+  console.log('⚠️ WhatsApp module not available:', err.message);
+  Client = null;
+  LocalAuth = null;
+}
+
 const qrcode = require('qrcode-terminal');
 
 const app = express();
@@ -44,14 +54,23 @@ let qrGenerationCount = 0;
 // Create WhatsApp client lazily (only when needed)
 function getClient() {
   if (!client) {
+    if (!Client) {
+      console.error('❌ WhatsApp module not available - WhatsApp features disabled');
+      return null;
+    }
     console.log('Creating WhatsApp client...');
-    client = new Client({
-      authStrategy: new LocalAuth({ clientId: 'agro-campaign' }),
-      puppeteer: {
-        headless: true,
-        args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
-      }
-    });
+    try {
+      client = new Client({
+        authStrategy: new LocalAuth({ clientId: 'agro-campaign' }),
+        puppeteer: {
+          headless: true,
+          args: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+        }
+      });
+    } catch (err) {
+      console.error('Error creating WhatsApp client:', err.message);
+      return null;
+    }
 
     client.on('qr', async qr => {
       qrGenerationCount++;
@@ -117,6 +136,10 @@ app.post('/api/authorize', (req, res) => {
   }
 
   const whatsappClient = getClient();
+
+  if (!whatsappClient) {
+    return res.status(503).json({ error: 'WhatsApp module not available' });
+  }
 
   if (!whatsappClient.pupBrowser) {
     whatsappClient.initialize().catch(err => {
@@ -271,6 +294,11 @@ async function runCampaign() {
 
         const number = `${buyer.phone}@c.us`;
         const whatsappClient = getClient();
+
+        if (!whatsappClient) {
+          throw new Error('WhatsApp client not available');
+        }
+
         await whatsappClient.sendMessage(number, message);
 
         buyer.status = 'sent';
